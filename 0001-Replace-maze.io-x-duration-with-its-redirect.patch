@@ -1,0 +1,40 @@
+From 321ed59c055a0008c48297ad4dd447f6aec26470 Mon Sep 17 00:00:00 2001
+From: Ivan Mironov <mironov.ivan@gmail.com>
+Date: Sat, 12 Jun 2021 14:32:53 +0500
+Subject: [PATCH] Replace maze.io/x/duration with its redirect
+
+This fixes following error:
+
+	go: maze.io/x/duration@v0.0.0-20160924141736-faac084b6075: unrecognized import path "maze.io/x/duration": parse https://maze.io/x/duration?go-get=1: no go-import meta tags ()
+---
+ go.mod | 4 ++++
+ go.sum | 2 ++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/go.mod b/go.mod
+index 477493de9177..9c4fb5de31f3 100644
+--- a/go.mod
++++ b/go.mod
+@@ -41,3 +41,7 @@ require (
+ 	gopkg.in/yaml.v2 v2.4.0
+ 	maze.io/x/duration v0.0.0-20160924141736-faac084b6075
+ )
++
++replace (
++	maze.io/x/duration => git.maze.io/go/duration v0.0.0-20160924141736-faac084b6075
++)
+diff --git a/go.sum b/go.sum
+index f1b8f29b267f..c209e7aa1884 100644
+--- a/go.sum
++++ b/go.sum
+@@ -1,5 +1,7 @@
+ cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
+ cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
++git.maze.io/go/duration v0.0.0-20160924141736-faac084b6075 h1:jESjOpk7mUiOhCInw+wg7MHW4gl+LE2jfQHhWFMNK0E=
++git.maze.io/go/duration v0.0.0-20160924141736-faac084b6075/go.mod h1:y9MVD7vG8A7scVb2MvTVxN0z+DHTzxnWgOisOnFe5kc=
+ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+ github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible/go.mod h1:r7JcOSlj0wfOMncg0iLm8Leh48TZaKVeNIfJntJ2wa0=
+ github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
+-- 
+2.31.1
+
