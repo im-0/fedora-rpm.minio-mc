@@ -1,8 +1,8 @@
 # TODO: Enable debuginfo (disabled for f35).
 %global debug_package %{nil}
 
-%global orig_version_date 2021-09-02
-%global orig_version_time 09-21-27
+%global orig_version_date 2022-05-09
+%global orig_version_time 04-08-26
 %global orig_version %{orig_version_date}T%{lua: print(rpm.expand("%{orig_version_time}"):gsub("-", ":") .. "Z")}
 %global orig_tag RELEASE.%{orig_version_date}T%{orig_version_time}Z
 
@@ -21,9 +21,7 @@ Source1:    mc-%{orig_tag}.go-mod-vendor.tar.xz
 
 Source2:    minio-mc.bash-completion
 
-Patch0:     0001-Replace-maze.io-x-duration-with-its-redirect.patch
-
-BuildRequires:  golang >= 1.16
+BuildRequires:  golang >= 1.17
 
 
 %description
@@ -63,6 +61,9 @@ cp %{SOURCE2} %{buildroot}/%{_datadir}/bash-completion/completions/%{name}
 
 
 %changelog
+* Thu May 12 2022 Ivan Mironov <mironov.ivan@gmail.com> - 2022.05.09.04.08.26-1
+- Update to RELEASE.2022-05-09T04-08-26Z
+
 * Tue Sep 21 2021 Ivan Mironov <mironov.ivan@gmail.com> - 2021.09.02.09.21.27-1
 - Update to RELEASE.2021-09-02T09-21-27Z
 
