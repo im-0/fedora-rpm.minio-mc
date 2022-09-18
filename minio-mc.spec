@@ -1,8 +1,8 @@
 # TODO: Enable debuginfo (disabled for f35).
 %global debug_package %{nil}
 
-%global orig_version_date 2022-05-09
-%global orig_version_time 04-08-26
+%global orig_version_date 2022-09-16
+%global orig_version_time 09-16-47
 %global orig_version %{orig_version_date}T%{lua: print(rpm.expand("%{orig_version_time}"):gsub("-", ":") .. "Z")}
 %global orig_tag RELEASE.%{orig_version_date}T%{orig_version_time}Z
 
@@ -21,7 +21,7 @@ Source1:    mc-%{orig_tag}.go-mod-vendor.tar.xz
 
 Source2:    minio-mc.bash-completion
 
-BuildRequires:  golang >= 1.17
+BuildRequires:  golang >= 1.18
 
 
 %description
@@ -31,7 +31,6 @@ S3 compatible cloud storage service (AWS Signature v2 and v4).
 
 
 %prep
-%autosetup -p1 -b0 -n mc-%{orig_tag}
 %autosetup -p1 -b1 -n mc-%{orig_tag}
 
 sed -i 's,^\([[:space:]]*Version[[:space:]]*=[[:space:]]*\)".*$,\1"%{orig_version}",' cmd/build-constants.go
@@ -61,6 +60,9 @@ cp %{SOURCE2} %{buildroot}/%{_datadir}/bash-completion/completions/%{name}
 
 
 %changelog
+* Sun Sep 18 2022 Ivan Mironov <mironov.ivan@gmail.com> - 2022.09.16.09.16.47-1
+- Update to RELEASE.2022-09-16T09-16-47Z
+
 * Thu May 12 2022 Ivan Mironov <mironov.ivan@gmail.com> - 2022.05.09.04.08.26-1
 - Update to RELEASE.2022-05-09T04-08-26Z
 
